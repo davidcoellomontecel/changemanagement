@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecturas de Contexto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@500;600&display=swap">
+<style>
+/* Estilo gráfico: cuaderno de pergamino de las Lecture Notes ESPAE, con el naranja institucional. */
+.ldc{
+  --bg:#f7f6f4; --card:#ffffff; --sand:#fef3ec; --tint:#fff3de; --ink:#262626; --ink-2:#262626; --slate:#6b6b6b;
+  --rule:#e2ddd6; --ember:#f79d00; --ember-ink:#f28500; --o1:#f79d00; --o2:#f28500;
+  --grad:linear-gradient(135deg,#f79d00,#f28500);
+  --shadow:0 1px 3px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.02);
+  --serif:"Lora","Source Serif Pro","PT Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Roboto","Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:var(--bg); color:var(--ink); font:400 17px/1.7 var(--sans); -webkit-text-size-adjust:100%;
+}
+@media (prefers-color-scheme: dark){ .ldc{
+  --bg:#171614; --card:#211f1c; --sand:#382720; --tint:#3a2c10; --ink:#eee9e2; --ink-2:#eee9e2; --slate:#b3aca2;
+  --rule:#3a3630; --shadow:0 1px 3px rgba(0,0,0,.4); color-scheme:dark; } }
+.ldc *,.ldc *::before,.ldc *::after{ box-sizing:border-box; }
+.ldc a,.ldc a:hover,.ldc a:focus{ color:inherit; text-decoration:none; }
+.ldc :focus-visible{ outline:2px solid var(--ember); outline-offset:2px; }
+.ldc .wrap{ max-width:1000px; margin:0 auto; padding:2rem 24px 3.5rem; }
+
+.ldc .eyebrow{ display:block; font-size:.7rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--ember-ink); }
+
+/* ---------- portada ---------- */
+.ldc .hero{ background:var(--card); border-radius:32px; box-shadow:var(--shadow); overflow:hidden; }
+.ldc .band{ background:var(--grad); display:flex; flex-wrap:wrap; justify-content:space-between; gap:.4rem 1rem; padding:.7rem 2rem; color:#fff; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+.ldc .hero-in{ padding:2.2rem 2rem 2rem; background:linear-gradient(180deg,var(--sand),var(--card) 90%); }
+.ldc .hero h1{ margin:.2rem 0 1.1rem; font:500 clamp(1.9rem,5vw,2.9rem)/1.13 var(--serif); letter-spacing:-.012em; }
+.ldc .scribble{ display:inline-block; padding-bottom:.18em; background:no-repeat left bottom/100% .4em url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C20 3 38 8 58 5.2S98 3.4 118 6.2' fill='none' stroke='%23f79d00' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.ldc .topic{ margin:0; font-size:.98rem; }
+
+.ldc .info{ margin-top:1.4rem; padding:1.4rem 1.6rem 1.5rem; border-radius:24px; background:var(--card); box-shadow:var(--shadow); }
+.ldc .facts{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.9rem 1.6rem; margin:.8rem 0 0; }
+.ldc .facts>div{ padding-top:.7rem; border-top:2px solid var(--tint); }
+.ldc .facts dt{ font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ember-ink); }
+.ldc .facts dd{ margin:.15rem 0 0; font-size:.88rem; line-height:1.45; }
+.ldc .outcome{ margin:.2rem 0 0; padding:1.3rem 1.5rem; background:var(--card); border:2px solid var(--ember); border-radius:24px; font:500 1.05rem/1.6 var(--serif); }
+
+/* ---------- secciones ---------- */
+.ldc .sec{ margin-top:3.6rem; }
+.ldc .sec>h2::before{ content:""; display:block; width:3rem; height:5px; margin-bottom:.8rem; border-radius:999px; background:var(--o1); }
+.ldc .sec.c2>h2::before{ background:var(--o2); }
+.ldc h2{ margin:0 0 .6rem; font:500 1.75rem/1.25 var(--serif); }
+.ldc h3{ margin:0 0 .3rem; font:500 1.2rem/1.3 var(--serif); }
+.ldc .lead{ margin:0 0 1.4rem; color:var(--slate); }
+.ldc p{ margin:0 0 1em; }
+
+/* ---------- lecturas ---------- */
+.ldc .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; }
+.ldc .go{ display:flex; flex-direction:column; padding:1.3rem 1.3rem 1.2rem; background:var(--card); border-radius:18px; box-shadow:var(--shadow); border-top:5px solid var(--o1); color:var(--ink); transition:transform .13s ease, box-shadow .13s ease; }
+.ldc .go.c2{ border-top-color:var(--o2); }
+.ldc .go:hover{ transform:translateY(-3px); box-shadow:0 2px 6px rgba(0,0,0,.12),0 10px 24px rgba(0,0,0,.10); }
+.ldc .go .src{ margin:0 0 .8rem; font-size:.82rem; color:var(--slate); }
+.ldc .go .desc{ font-size:.92rem; line-height:1.55; }
+.ldc .lbl{ margin:.9rem 0 .35rem; font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ember-ink); }
+.ldc .go ul{ margin:0 0 .6rem; padding-left:1.2rem; font-size:.88rem; line-height:1.5; }
+.ldc .go li{ margin-bottom:.35rem; }
+.ldc .go li::marker{ color:var(--slate); }
+.ldc .units{ font-size:.82rem; line-height:1.5; color:var(--slate); margin:0 0 .9rem; }
+.ldc .ga,.ldc .go:hover .ga{ margin-top:auto; padding-top:.6rem; font-size:.92rem; font-weight:600; color:var(--ember-ink); text-decoration:none; }
+.ldc .ga span{ display:inline-block; transition:transform .13s ease; }
+.ldc .go:hover .ga span{ transform:translateX(4px); }
+
+/* ---------- panel destacado ---------- */
+.ldc .panel{ padding:1.4rem 1.6rem .9rem; background:var(--tint); border:1px solid var(--o1); border-radius:28px; box-shadow:var(--shadow); }
+.ldc .panel p{ font-size:.95rem; }
+
+/* ---------- cómo leerlos ---------- */
+.ldc .steps{ list-style:none; margin:0; padding:0; display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+.ldc .steps li{ padding:1.1rem 1.2rem; background:var(--card); border-radius:12px; box-shadow:var(--shadow); font-size:.9rem; line-height:1.55; }
+.ldc .steps b{ display:block; margin-bottom:.25rem; font:500 1.05rem/1.3 var(--serif); }
+
+/* ---------- tabla ---------- */
+.ldc .tablewrap{ overflow-x:auto; background:var(--card); border-radius:12px; box-shadow:var(--shadow); }
+.ldc .tbl{ width:100%; min-width:34rem; border-collapse:collapse; font-size:.88rem; line-height:1.5; }
+.ldc .tbl th{ padding:.7rem .85rem; border-bottom:1px solid var(--rule); text-align:left; font-size:.68rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); }
+.ldc .tbl td{ padding:.7rem .85rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+.ldc .tbl tr:last-child td{ border-bottom:0; }
+.ldc .tbl td:first-child{ font-weight:600; }
+.ldc .tbl td.y{ color:var(--ember-ink); font-weight:600; }
+.ldc .tbl th.c,.ldc .tbl td.y{ text-align:center; }
+
+/* ---------- reflexión ---------- */
+.ldc .note{ padding:1.05rem 1.4rem .4rem; background:var(--sand); border-radius:12px; font-size:.94rem; }
+.ldc .note p{ margin:.3rem 0 .8rem; }
+.ldc .note b{ font-family:var(--serif); color:var(--ember-ink); margin-right:.3rem; }
+
+.ldc footer{ margin-top:3.6rem; padding-top:1.2rem; border-top:1px solid var(--rule); font-size:.76rem; line-height:1.55; color:var(--slate); }
+.ldc footer p{ margin:0 0 .5rem; }
+
+@media (max-width:640px){
+  .ldc .wrap{ padding:1.2rem 16px 2.5rem; }
+  .ldc .band{ padding-inline:1.2rem; }
+  .ldc .hero{ border-radius:24px; }
+  .ldc .hero-in{ padding:1.5rem 1.2rem; }
+  .ldc .info{ padding:1.2rem 1.2rem 1.3rem; border-radius:20px; }
+  .ldc .facts{ grid-template-columns:minmax(0,1fr); }
+  .ldc .panel{ padding:1.1rem 1rem .8rem; border-radius:22px; }
+  .ldc h2{ font-size:1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="ldc">
+<div class="wrap">
+
+  <header class="hero">
+    <div class="band"><span>ESPAE · Escuela de Negocios de la ESPOL</span><span>Lecturas de Contexto</span></div>
+    <div class="hero-in">
+      <h1>Lecturas de <span class="scribble">Contexto</span>: el mundo del trabajo en 2026</h1>
+      <p class="topic">Tres informes globales muestran cómo cambian la experiencia de las personas, la estructura de las organizaciones y las decisiones de talento. Sirven de telón de fondo para analizar el liderazgo ético y la gestión de personas a lo largo del curso.</p>
+    </div>
+  </header>
+
+  <div class="info"><span class="eyebrow">Información general</span>
+    <dl class="facts">
+      <div><dt>Asignatura</dt><dd>Liderazgo ético y gestión de personas</dd></div>
+      <div><dt>Programa</dt><dd>MBA · ESPAE, Escuela de Negocios de la ESPOL</dd></div>
+      <div><dt>Modalidad</dt><dd>Lectura autónoma</dd></div>
+    </dl>
+  </div>
+
+  <section class="sec">
+    <h2>¿Por qué estas lecturas?</h2>
+    <div class="panel">
+      <p>Estas lecturas son fundamentales para comprender el contexto de las organizaciones en el mundo actual. Las empresas operan en medio de profundas transformaciones: la creciente adopción de la inteligencia artificial, que redefine cómo se organiza y se hace el trabajo, y los conflictos geopolíticos, que están reconfigurando la manera en que las organizaciones y las sociedades toman decisiones.</p>
+      <p>Los conceptos del curso (confianza, motivación, cultura, liderazgo ético, gestión del talento) cobran sentido cuando se contrastan con este escenario. Los tres informes aportan miradas complementarias: la <em>experiencia de las personas</em> (Gallup), la <em>estructura y el desempeño de las organizaciones</em> (McKinsey) y las <em>decisiones de talento y trabajo</em> de los líderes (Deloitte). Juntos son el gran marco de referencia para la discusión de los diferentes casos de la asignatura.</p>
+    </div>
+  </section>
+
+  <section class="sec c2">
+    <h2>Elige por dónde empezar</h2>
+    <p class="lead">Cada lectura enlaza al informe en el sitio oficial de la organización. Algunos requieren completar un formulario de descarga.</p>
+    <div class="cards">
+
+      <a class="go" href="https://www.gallup.com/workplace/349484/state-workplace.aspx" target="_blank" rel="noopener">
+        <span class="eyebrow">Lectura 1</span>
+        <h3>State of the Global Workplace 2026</h3>
+        <p class="src">Gallup · publicado en abril de 2026</p>
+        <p class="desc">Estudio anual sobre la experiencia de los empleados en más de 140 países y territorios: engagement, bienestar, emociones diarias, clima laboral y efectividad de la gestión.</p>
+        <div class="lbl">Ideas para llevar en mente</div>
+        <ul>
+          <li>El engagement global cayó al 20 %, por segundo año consecutivo.</li>
+          <li>El engagement de los gerentes baja de 27 % a 22 % entre 2024 y 2025.</li>
+          <li>Gallup estima el costo de la baja productividad en cerca de 9 % del PIB mundial.</li>
+        </ul>
+        <div class="lbl">Se conecta con</div>
+        <p class="units">Confianza y actitudes laborales · Liderazgo ético · Bienestar laboral</p>
+        <span class="ga">Abrir informe de Gallup <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="go c2" href="https://www.mckinsey.com/capabilities/people-and-organization/our-insights/the-state-of-organizations" target="_blank" rel="noopener">
+        <span class="eyebrow">Lectura 2</span>
+        <h3>The State of Organizations 2026</h3>
+        <p class="src">McKinsey &amp; Company · segunda edición</p>
+        <p class="desc">Investigación basada en una encuesta a más de 10.000 altos ejecutivos de 15 países y 16 industrias. Analiza tres fuerzas que reconfiguran las organizaciones y nueve cambios que de ellas se derivan.</p>
+        <div class="lbl">Ideas para llevar en mente</div>
+        <ul>
+          <li>Tecnología (incluida la IA), incertidumbre del entorno y una fuerza laboral que cambia.</li>
+          <li>Colaboración entre personas y agentes de IA como nuevo reto de liderazgo.</li>
+          <li>La brecha entre experimentar con IA y obtener valor real.</li>
+        </ul>
+        <div class="lbl">Se conecta con</div>
+        <p class="units">Cultura organizacional · Liderazgo ético · Dirección estratégica del talento · Competencias</p>
+        <span class="ga">Abrir informe de McKinsey <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="go" href="https://www.deloitte.com/us/en/insights/topics/talent/human-capital-trends.html" target="_blank" rel="noopener">
+        <span class="eyebrow">Lectura 3</span>
+        <h3>Global Human Capital Trends 2026</h3>
+        <p class="src">Deloitte · <em>From tensions to tipping points: Choosing the human advantage</em></p>
+        <p class="desc">Informe anual sobre las fuerzas que transforman el trabajo, la fuerza laboral y la organización. Combina una encuesta a más de 3.000 líderes de 15 países (con Oxford Economics) y a 6.000 empleados y directivos.</p>
+        <div class="lbl">Ideas para llevar en mente</div>
+        <ul>
+          <li>La agilidad como principal estrategia competitiva de los próximos años.</li>
+          <li>Rediseño del trabajo bajo una lógica «humano × máquina».</li>
+          <li>Solo 27 % cree que su organización gestiona bien el cambio.</li>
+        </ul>
+        <div class="lbl">Se conecta con</div>
+        <p class="units">Talento estratégico · Competencias y rediseño del trabajo · Desarrollo del talento · Riesgos psicosociales</p>
+        <span class="ga">Abrir informe de Deloitte <span aria-hidden="true">→</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Cómo leerlos</h2>
+    <p class="lead">Una estrategia sencilla para sacar partido a documentos extensos sin leerlos de principio a fin.</p>
+    <ol class="steps">
+      <li><b>1 · Resumen ejecutivo</b>Comienza por el resumen ejecutivo e identifica los mensajes centrales de cada informe.</li>
+      <li><b>2 · Secciones clave</b>Profundiza en las secciones que se relacionan con los tópicos de la asignatura; guíate por el mapa de abajo.</li>
+      <li><b>3 · Mirada crítica</b>Lee siempre con mirada crítica y contrasta diferentes fuentes para obtener una perspectiva más amplia sobre la situación de las empresas en 2026.</li>
+    </ol>
+  </section>
+
+  <section class="sec c2">
+    <h2>Mapa de conexión con los tópicos del curso</h2>
+    <p class="lead">Dónde encaja cada informe dentro de la asignatura.</p>
+    <div class="tablewrap">
+      <table class="tbl">
+        <thead><tr><th>Tópico del curso</th><th class="c">Gallup</th><th class="c">McKinsey</th><th class="c">Deloitte</th></tr></thead>
+        <tbody>
+          <tr><td>Confianza, actitudes laborales y desempeño colaborativo</td><td class="y">✓</td><td></td><td></td></tr>
+          <tr><td>Cultura social y organizacional</td><td></td><td class="y">✓</td><td></td></tr>
+          <tr><td>Liderazgo ético</td><td class="y">✓</td><td class="y">✓</td><td></td></tr>
+          <tr><td>Dirección estratégica del talento humano</td><td></td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td>Enfoque basado en competencias</td><td></td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td>Desarrollo del talento humano</td><td></td><td></td><td class="y">✓</td></tr>
+          <tr><td>Bienestar laboral y nuevos riesgos psicosociales</td><td class="y">✓</td><td></td><td class="y">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>Los informes pertenecen a sus respectivas organizaciones (Gallup, McKinsey &amp; Company y Deloitte) y se enlazan a sus sitios oficiales con fines académicos. Las cifras corresponden a las ediciones 2026 y deben verificarse en el documento original al citarlas.</p>  </footer>
+
+</div>
+</div>
+</body>
+</html>
