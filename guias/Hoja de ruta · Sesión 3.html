@@ -1,0 +1,467 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hoja de ruta · Sesión 3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600&display=swap">
+<style>
+/* Concepto: hoja de ruta de la sesión. Barra lateral con los momentos (como la lista de reuniones del aula virtual de referencia) y tarjetas desplegables a la derecha. Estilo de las Lecture Notes: blanco, gris y naranja ESPAE; títulos Lora, cuerpo Inter. */
+:root{
+  --bg:#f7f6f4; --card:#ffffff; --sand:#fef3ec; --tint:#fff3de; --ink:#262626; --slate:#6b6b6b;
+  --rule:#e2ddd6; --o1:#f79d00; --o2:#f28500; --ember-ink:#f28500; --mute:#8c8c8c;
+  --grad:linear-gradient(135deg,#f79d00,#f28500);
+  --shadow:0 1px 3px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.05),0 4px 12px rgba(0,0,0,.02);
+  --serif:"Lora","Source Serif Pro","PT Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter","Roboto","Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171614; --card:#211f1c; --sand:#382720; --tint:#3a2c10; --ink:#eee9e2; --slate:#b3aca2;
+  --rule:#3a3630; --ember-ink:#f79d00; --mute:#9c968c;
+  --shadow:0 1px 3px rgba(0,0,0,.4);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171614; --card:#211f1c; --sand:#382720; --tint:#3a2c10; --ink:#eee9e2; --slate:#b3aca2;
+  --rule:#3a3630; --ember-ink:#f79d00; --mute:#9c968c;
+  --shadow:0 1px 3px rgba(0,0,0,.4);
+  color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:17px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--sans)}
+:focus-visible{outline:2px solid var(--o1);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+[id]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 16px)}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit}
+
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{display:block;font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ember-ink)}
+
+/* ---------- encabezado ---------- */
+.hero-wrap{padding-block:1.6rem 0}
+.hero{background:var(--card);border-radius:32px;box-shadow:var(--shadow);overflow:hidden}
+.band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;padding:.75rem 2rem;background:var(--grad);color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero-in{padding:2rem 2rem 1.8rem;background:linear-gradient(180deg,var(--sand),var(--card) 92%)}
+.hero h1{max-width:none;width:100%;margin:.5rem 0 1.4rem;font:500 clamp(1.7rem,3.9vw,2.6rem)/1.16 var(--serif);letter-spacing:-.012em;text-wrap:pretty}
+.scribble{display:inline-block;padding-bottom:.18em;background:no-repeat left bottom/100% .4em url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C20 3 38 8 58 5.2S98 3.4 118 6.2' fill='none' stroke='%23f79d00' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E")}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.9rem 1.4rem;margin:0}
+@media (min-width:900px){.meta{grid-template-columns:max-content max-content max-content max-content minmax(0,1fr);gap:.9rem 2rem}}
+.meta dd{white-space:nowrap}
+.meta>div{padding-top:.7rem;border-top:2px solid var(--tint);min-width:0}
+.meta dt{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-ink)}
+.meta dd{margin:.15rem 0 0;font-size:.92rem;line-height:1.4;font-variant-numeric:tabular-nums}
+
+/* ---------- retícula ---------- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem;padding-block:1.6rem 3rem;align-items:start}
+@media (min-width:900px){.layout{grid-template-columns:17.5rem minmax(0,1fr);gap:2.2rem}}
+
+/* ---------- lista de momentos (barra lateral) ---------- */
+.side{min-width:0}
+@media (min-width:900px){.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}}
+.side-h{margin:0 0 .7rem}
+.nav{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.4rem}
+@media (min-width:900px){.nav{flex-direction:column;overflow:visible;gap:.15rem;padding:0}}
+.nv{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;min-width:11.5rem;padding:.8rem .95rem;border-radius:14px;background:var(--card);box-shadow:var(--shadow);text-decoration:none;color:var(--ink);border:1.5px solid transparent;transition:border-color .13s ease,background .13s ease}
+@media (min-width:900px){
+  .nv{min-width:0;box-shadow:none;background:transparent;border-radius:14px;padding:.75rem .9rem}
+  .nv + .nv{border-top:1px solid var(--rule);border-radius:0}
+  .nv:hover{background:var(--card)}
+  .nv.on{background:var(--card);box-shadow:var(--shadow);border-radius:14px;border-color:var(--o1)}
+}
+.nv.on{border-color:var(--o1)}
+.nt{font-size:.9rem;font-weight:600;line-height:1.3}
+.bds{display:flex;flex-wrap:wrap;gap:.3rem}
+.bd{display:inline-block;padding:.12rem .6rem;border-radius:999px;font-size:.68rem;font-weight:600;line-height:1.5;white-space:nowrap}
+.bd.before{border:1.5px solid var(--mute);color:var(--slate)}
+.bd.in{background:var(--tint);color:var(--ember-ink);border:1.5px solid var(--tint)}
+.bd.after{background:var(--rule);color:var(--ink);border:1.5px solid var(--rule)}
+.legend{display:none;margin:1.1rem 0 0;padding:.9rem 1rem;border-radius:14px;background:var(--sand);font-size:.78rem;line-height:1.5;color:var(--slate)}
+@media (min-width:900px){.legend{display:block}}
+
+/* ---------- tarjetas desplegables ---------- */
+.main{min-width:0;display:flex;flex-direction:column;gap:1rem}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.tools p{margin:0;font-size:.82rem;color:var(--slate)}
+.btn-ghost{font:600 .8rem var(--sans);padding:.4rem 1rem;border:1.5px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.btn-ghost:hover{background:var(--card)}
+details.card{background:var(--card);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--rule);min-width:0}
+details.card>summary{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;cursor:pointer;list-style:none}
+details.card>summary::-webkit-details-marker{display:none}
+.ic{flex:none;display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--sand);color:var(--ember-ink);box-shadow:inset 0 0 0 1px var(--rule)}
+.ic svg{width:1.3rem;height:1.3rem}
+.st{flex:1;min-width:0;padding-left:1rem;border-left:1px solid var(--rule);font:500 1.2rem/1.3 var(--serif);text-wrap:balance}
+.chev{flex:none;width:.6rem;height:.6rem;margin-right:.3rem;border-right:2px solid var(--slate);border-bottom:2px solid var(--slate);transform:rotate(45deg);transition:transform .15s ease}
+details[open]>summary .chev{transform:rotate(-135deg)}
+.body{padding:.2rem 1.4rem 1.5rem}
+@media (min-width:640px){.body{padding-left:calc(1.2rem + 2.6rem + 1rem)}}
+.sub{margin:1.4rem 0 .6rem}
+.sub:first-child{margin-top:.4rem}
+
+/* ---------- propósito ---------- */
+.purpose{font-size:1.02rem}
+.qs li{padding:.85rem 0;border-top:1px solid var(--rule);font:500 1.06rem/1.5 var(--serif)}
+.qs li:last-child{padding-bottom:0}
+
+/* ---------- resultado de aprendizaje ---------- */
+.ra-lead{margin:.3rem 0 .6rem;font-size:.92rem;color:var(--slate)}
+.outcome{padding:1.25rem 1.4rem;background:var(--card);border:2px solid var(--o1);border-radius:24px;font:500 1.12rem/1.6 var(--serif)}
+.where{display:grid;gap:.6rem;margin-top:.4rem}
+.where li{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:.3rem 1rem;padding:.75rem 1rem;border-radius:14px;background:var(--sand);font-size:.9rem;line-height:1.45}
+.where li span:last-child{color:var(--slate)}
+.where b{font-weight:600}
+@media (max-width:560px){.where li{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- preparación ---------- */
+.msg{padding:1.1rem 1.3rem .2rem;border-left:4px solid var(--o1);border-radius:0 14px 14px 0;background:var(--tint);font-size:.98rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.9rem 1.4rem;margin:1.2rem 0 1.3rem}
+.facts>div{padding-top:.6rem;border-top:2px solid var(--tint);min-width:0}
+.facts dt{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-ink)}
+.facts dd{margin:.15rem 0 0;font-size:.92rem;line-height:1.4}
+.cta{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1.4rem;border-radius:999px;background:var(--o2);color:#fff;font:700 .92rem var(--sans);text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.28);box-shadow:var(--shadow);transition:transform .13s ease}
+.cta:hover{transform:translateY(-2px)}
+
+/* ---------- ruta ---------- */
+.route{display:grid;gap:.9rem;margin-top:.9rem}
+.mo{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:.9rem;align-items:start}
+.mk{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--o1);color:#262626;font:700 .9rem var(--sans);font-variant-numeric:tabular-nums}
+.mo:nth-child(even) .mk{background:var(--o2)}
+.mc{min-width:0;padding:1rem 1.15rem 1.05rem;border-radius:16px;background:var(--sand)}
+.mc h3{margin:.1rem 0 .4rem;font:500 1.1rem/1.3 var(--serif)}
+.mc p{margin:0 0 .5rem;font-size:.9rem;line-height:1.55}
+.mc p:last-child{margin-bottom:0}
+.mc p b{font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .6rem}
+.tag{display:inline-block;padding:.12rem .65rem;border-radius:999px;background:var(--card);font-size:.7rem;font-weight:600;line-height:1.5;border:1px solid var(--rule)}
+.tag.grade{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.note{margin:1.1rem 0 0;font-size:.82rem;color:var(--slate)}
+
+/* ---------- contenidos ---------- */
+.blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin-top:.9rem}
+@media (max-width:700px){.blocks{grid-template-columns:minmax(0,1fr)}}
+.blk{min-width:0;padding:1.1rem 1.2rem 1.2rem;border-radius:18px;background:var(--sand);border-top:5px solid var(--o1)}
+.blk:nth-child(even){border-top-color:var(--o2)}
+.blk .ref{display:block;margin-bottom:.3rem;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-ink)}
+.blk h3{margin:0 0 .4rem;font:500 1.12rem/1.3 var(--serif);text-wrap:balance}
+.blk p{margin:0 0 .8rem;font-size:.88rem;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{display:inline-block;padding:.2rem .7rem;border-radius:999px;background:var(--card);border:1px solid var(--rule);font-size:.75rem;font-weight:500;line-height:1.5}
+.stages{margin-top:.9rem;padding:1.1rem 1.2rem 1.2rem;border-radius:18px;background:var(--tint)}
+.stages ol{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.stages li{display:flex;align-items:center;gap:.5rem;padding:.3rem .8rem .3rem .35rem;border-radius:999px;background:var(--card);border:1px solid var(--rule);font-size:.8rem;font-weight:500;line-height:1.3}
+.stages li b{display:grid;place-items:center;flex:none;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--o1);color:#262626;font:700 .72rem var(--sans)}
+
+/* ---------- actividades ---------- */
+.acts{display:grid;gap:1rem;margin-top:.9rem}
+.act{min-width:0;padding:1.2rem 1.3rem 1.3rem;border-radius:18px;background:var(--card);border:1px solid var(--rule);border-top:5px solid var(--o1);box-shadow:var(--shadow)}
+.act.b{border-top-color:var(--o2)}
+.act h3{margin:.1rem 0 .3rem;font:500 1.15rem/1.3 var(--serif);text-wrap:balance}
+.act p{font-size:.92rem;line-height:1.55}
+.act .tags{margin-top:.2rem}
+.steps{display:grid;gap:.5rem;margin:.9rem 0 1rem}
+.steps li{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.8rem;align-items:start;padding:.65rem .8rem;border-radius:12px;background:var(--sand);font-size:.9rem;line-height:1.5}
+.steps li b.n{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--o2);color:#262626;font:700 .85rem var(--sans)}
+.steps li strong{display:block;font-weight:600}
+.ev{padding:.8rem 1rem;border-left:4px solid var(--o1);border-radius:0 12px 12px 0;background:var(--tint);font-size:.9rem;line-height:1.55}
+.ev strong{display:block;margin-bottom:.1rem;font:700 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ember-ink)}
+.mom{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .7rem;margin:1.3rem 0 .2rem}
+.mom strong{font:500 1.02rem/1.3 var(--serif)}
+.mom .tag{background:var(--tint);border-color:var(--tint);color:var(--ember-ink)}
+.stages-in{margin:.2rem 0 0}
+.refs li{padding:.8rem 0 .8rem 2rem;border-top:1px solid var(--rule);text-indent:-2rem;font-size:.9rem;line-height:1.6;overflow-wrap:anywhere}
+.refs li:first-child{border-top:0;padding-top:.2rem}
+.refs li:last-child{padding-bottom:0}
+.refs a{color:var(--ember-ink);text-decoration:underline;text-underline-offset:2px}
+.btns{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.cta.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink);text-shadow:none;box-shadow:none}
+.cta.alt:hover{background:var(--sand)}
+
+/* ---------- cierre ---------- */
+.big{margin:.3rem 0 1.2rem;padding:1.2rem 1.4rem;border-radius:24px;background:var(--grad);color:#fff;font:500 1.35rem/1.3 var(--serif);text-wrap:balance;text-shadow:0 1px 2px rgba(0,0,0,.22)}
+.next{padding:1rem 1.2rem .3rem;border-radius:14px;background:var(--sand);margin-bottom:.9rem}
+
+/* ---------- pie ---------- */
+.foot{border-top:1px solid var(--rule)}
+.foot-in{padding-block:1.6rem 2.4rem;font-size:.76rem;color:var(--slate)}
+.foot-in b{display:block;margin-bottom:.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-ink)}
+.foot-in p{margin:.15rem 0 0}
+.foot-in .copy{max-width:46rem;margin-top:.8rem;font-size:.72rem;line-height:1.55}
+
+@media (max-width:640px){
+  .band{padding-inline:1.2rem}
+  .hero{border-radius:24px}
+  .hero-in{padding:1.4rem 1.2rem 1.4rem}
+  details.card>summary{padding:.9rem 1rem;gap:.8rem}
+  .st{font-size:1.08rem;padding-left:.8rem}
+  .body{padding-inline:1.1rem}
+  .mo{grid-template-columns:2rem minmax(0,1fr);gap:.7rem}
+  .mk{width:2rem;height:2rem;font-size:.8rem}
+}
+@media (prefers-reduced-motion:reduce){.chev,.cta,.nv{transition:none}}
+</style>
+
+<header class="wrap hero-wrap">
+  <div class="hero">
+    <div class="band"><span>ESPAE · Escuela de Negocios de la ESPOL</span><span>Sesión 3</span></div>
+    <div class="hero-in">
+      <span class="eyebrow">Gestión del Cambio en la Era Digital · Unidad: Introducción a la gestión del cambio</span>
+      <h1>Gestión del cambio: del cambio organizacional a la <span class="scribble">transición</span> de las personas</h1>
+      <dl class="meta">
+        <div><dt>Fecha</dt><dd>30 de octubre de 2026</dd></div>
+        <div><dt>Horario</dt><dd>13:00 a 15:00</dd></div>
+        <div><dt>Duración</dt><dd>120 minutos</dd></div>
+        <div><dt>Modalidad</dt><dd>Presencial</dd></div>
+        <div><dt>Docente</dt><dd>David Coello Montecel, M. Sc.</dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside class="side" aria-label="Momentos de la sesión">
+    <span class="eyebrow side-h">Hoja de ruta</span>
+    <nav class="nav" id="nav">
+      <a class="nv" href="#proposito"><span class="nt">Propósito y preguntas orientadoras</span></a>
+      <a class="nv" href="#resultado"><span class="nt">Resultado de aprendizaje</span></a>
+      <a class="nv" href="#preparacion"><span class="nt">Preparación previa</span><span class="bds"><span class="bd before">Antes de la clase</span></span></a>
+      <a class="nv" href="#ruta"><span class="nt">Ruta de aprendizaje</span><span class="bds"><span class="bd in">En clase</span></span></a>
+      <a class="nv" href="#contenidos"><span class="nt">Contenidos de la sesión</span><span class="bds"><span class="bd in">En clase</span></span></a>
+      <a class="nv" href="#actividades"><span class="nt">Actividades de aprendizaje</span><span class="bds"><span class="bd in">En clase</span><span class="bd after">Después de la clase</span></span></a>
+      <a class="nv" href="#cierre"><span class="nt">Cierre y siguiente paso</span></a>
+      <a class="nv" href="#referencias"><span class="nt">Referencias bibliográficas</span></a>
+    </nav>
+    <p class="legend">Las etiquetas indican cuándo ocurre cada parte: antes de la clase, durante la sesión presencial o después de ella.</p>
+  </aside>
+
+  <main class="main">
+    <div class="tools">
+      <p>Cada bloque se puede abrir y cerrar.</p>
+      <button type="button" class="btn-ghost" id="toggleAll">Contraer todo</button>
+    </div>
+
+    <!-- 1 · Propósito -->
+    <details class="card" id="proposito" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.6a2.6 2.6 0 1 1 3.7 2.3c-.8.4-1.2 1-1.2 1.8"/><circle cx="12" cy="17" r=".7" fill="currentColor"/></svg></span><span class="st">Propósito y preguntas orientadoras</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <span class="eyebrow sub">Propósito de la sesión</span>
+        <p class="purpose">En esta sesión explorarás por qué las organizaciones cambian y en qué se diferencia el cambio que se decide de la transición que vive cada persona. Analizarás las reacciones ante un cambio con la curva de Kübler-Ross y las fases de la transición, y aplicarás esa mirada a una experiencia real de cambio.</p>
+        <span class="eyebrow sub">Preguntas orientadoras</span>
+        <ul class="qs">
+          <li>¿Por qué un cambio que se puede decretar en un día tarda meses en ser asumido por las personas, y qué explica el enfoque psicodinámico sobre lo que ocurre en ese tiempo?</li>
+          <li>¿En qué se diferencia el cambio que decide una organización de la transición que viven las personas?</li>
+          <li>¿Qué necesita una persona en cada fase de la transición para llegar a un nuevo comienzo?</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 2 · Resultado de aprendizaje -->
+    <details class="card" id="resultado" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><span class="st">Resultado de aprendizaje</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <p class="ra-lead">Al finalizar la sesión, el estudiante será capaz de:</p>
+        <div class="outcome"><strong>Analizar</strong> las reacciones de las personas ante un cambio organizacional, aplicando la curva de Kübler-Ross y las fases de la transición, para la distinción entre la implementación del cambio y la gestión de la transición de las personas.</div>
+        <span class="eyebrow sub">Dónde lo trabajarás</span>
+        <ul class="where">
+          <li><span><b>Analizar las reacciones</b> con la curva de Kübler-Ross</span><span>Contenido 2.3 y actividad individual</span></li>
+          <li><span><b>Aplicar las fases</b> de la transición</span><span>Contenido 2.4</span></li>
+          <li><span><b>Distinguir</b> implementación del cambio y gestión de la transición</span><span>Contenido 2.2 y síntesis</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 3 · Preparación -->
+    <details class="card" id="preparacion" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5c2-1 5-1 9 1 4-2 7-2 9-1V19c-2-1-5-1-9 1-4-2-7-2-9-1z"/><path d="M12 6.5V20"/></svg></span><span class="st">Preparación previa</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <div class="msg">
+          <p>Antes de la sesión, revisa la Lecture Note 3, disponible en el aula virtual para su consulta.</p>
+          <p>En este documento encontrarás los diferentes contenidos que abordaremos durante la lección. Te recomendamos familiarizarte con los temas presentados para facilitar su comprensión y aprovechar mejor las explicaciones y actividades que desarrollaremos en clase.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Material obligatorio</dt><dd>Lecture Note 3</dd></div>
+          <div><dt>Dónde encontrarlo</dt><dd>Aula virtual</dd></div>
+          <div><dt>Tiempo estimado de preparación</dt><dd>90 minutos</dd></div>
+        </dl>
+        <a class="cta" href="https://aulavirtual.espol.edu.ec/courses/43310/pages/lecture-notes-star-sesion-3-%7C-gestion-del-cambio-del-cambio-organizacional-a-la-transicion-de-las-personas" target="_blank" rel="noopener">Abrir la Lecture Note 3 <span aria-hidden="true">→</span></a>
+      </div>
+    </details>
+
+    <!-- 4 · Ruta -->
+    <details class="card" id="ruta" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3.5 3.5 0 0 0 0-7h-4a3.5 3.5 0 0 1 0-7h6"/></svg></span><span class="st">Ruta de aprendizaje</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <p class="purpose">La clase sigue este orden. El docente ajusta la duración de cada momento durante la sesión.</p>
+        <ol class="route">
+          <li class="mo"><span class="mk">1</span><div class="mc">
+            <span class="eyebrow">Apertura</span><h3>Pulso Digital</h3>
+            <p>Noticias destacadas del mundo actual y video de la semana.</p>
+            <p><b>Qué harás:</b> observar el video de la semana junto con el curso.</p>
+          </div></li>
+          <li class="mo"><span class="mk">2</span><div class="mc">
+            <span class="eyebrow">Apertura</span><h3>Presentaciones de equipos</h3>
+            <p>Dos equipos, elegidos al azar, muestran cómo rediseñarían su proceso con agentes de IA. Es la actividad de la sesión 2.</p>
+            <p><b>Qué harás:</b> seguir las presentaciones. Los entregables están disponibles en el aula virtual.</p>
+          </div></li>
+          <li class="mo"><span class="mk">3</span><div class="mc">
+            <span class="eyebrow">Contenidos</span><h3>Exposición del docente</h3>
+            <p>Introducción y contenidos 2.1 a 2.4: contexto del cambio, cambio y transición, curva de Kübler-Ross y fases de la transición.</p>
+            <p><b>Qué harás:</b> seguir la explicación y relacionarla con lo que leíste en la Lecture Note 3.</p>
+            <p><b>Para qué:</b> contar con el marco para analizar las reacciones de las personas ante un cambio.</p>
+          </div></li>
+          <li class="mo"><span class="mk">4</span><div class="mc">
+            <span class="eyebrow">Aplicación</span><h3>Actividad individual: la curva del cambio de Kübler-Ross</h3>
+            <div class="tags"><span class="tag grade">Calificada</span><span class="tag">Individual</span><span class="tag">Momento 1 de 2</span></div>
+            <p><b>Qué harás:</b> identificar una experiencia de cambio significativa de tu entorno personal, académico o laboral que puedas compartir con tus compañeros, y analizarla con la curva, describiendo cómo se manifestó cada etapa. Es la primera versión de tu análisis.</p>
+            <p><b>Para qué:</b> comprender los factores que influyen en la adaptación y la resistencia al cambio.</p>
+            <p><b>Después de la clase:</b> completarás la versión final en el formato proporcionado.</p>
+          </div></li>
+          <li class="mo"><span class="mk">5</span><div class="mc">
+            <span class="eyebrow">Cierre</span><h3>Síntesis y conexión con la sesión 4</h3>
+            <p>Ideas clave de la sesión y paso a las sesiones siguientes.</p>
+          </div></li>
+          <li class="mo"><span class="mk">6</span><div class="mc">
+            <span class="eyebrow">Cierre</span><h3>Control de lectura en Kahoot</h3>
+            <div class="tags"><span class="tag grade">Calificada</span><span class="tag">5 preguntas</span></div>
+            <p><b>Qué harás:</b> responder cinco preguntas sobre los conceptos principales de la Lecture Note 3.</p>
+          </div></li>
+        </ol>
+      </div>
+    </details>
+
+    <!-- 5 · Contenidos -->
+    <details class="card" id="contenidos" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span><span class="st">Contenidos de la sesión</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <p class="purpose">Los contenidos siguen la estructura de la Lecture Note 3. La sesión abre con una introducción, desarrolla las secciones 2.1 a 2.4 y cierra con una síntesis.</p>
+        <div class="blocks">
+          <article class="blk"><span class="ref">Sección 2.1</span><h3>El contexto del cambio</h3><p>Por qué cambian las organizaciones y qué las presiona a hacerlo.</p>
+            <div class="chips"><span class="chip">Entorno VUCA</span><span class="chip">Entorno BANI</span><span class="chip">RUPT y TUNA</span><span class="chip">Presiones externas e internas</span></div></article>
+          <article class="blk"><span class="ref">Sección 2.2</span><h3>Cambio, gestión del cambio y transición</h3><p>Qué es cambiar, qué es gestionarlo y por qué cambio y transición no son lo mismo.</p>
+            <div class="chips"><span class="chip">Gestión del cambio</span><span class="chip">Tipos de cambio</span><span class="chip">Cambio y transición</span><span class="chip">Cumplimiento y compromiso</span></div></article>
+          <article class="blk"><span class="ref">Sección 2.3</span><h3>La curva de Kübler-Ross: el enfoque psicodinámico</h3><p>Qué viven las personas por dentro ante un cambio y cómo leer la curva con criterio.</p>
+            <div class="chips"><span class="chip">Enfoque psicodinámico</span><span class="chip">Siete etapas</span><span class="chip">Cómo leer la curva</span><span class="chip">Límites del modelo</span></div></article>
+          <article class="blk"><span class="ref">Sección 2.4</span><h3>Las fases de la transición</h3><p>El modelo de Bridges y lo que necesita cada fase.</p>
+            <div class="chips"><span class="chip">Finales</span><span class="chip">Zona neutra</span><span class="chip">Nuevos comienzos</span></div></article>
+        </div>
+        <div class="stages">
+          <span class="eyebrow">Las siete etapas de la curva, en orden</span>
+          <ol>
+            <li><b>1</b>Choque</li><li><b>2</b>Negación</li><li><b>3</b>Ira o culpa</li><li><b>4</b>Negociación y autoculpa</li><li><b>5</b>Depresión y confusión</li><li><b>6</b>Aceptación</li><li><b>7</b>Resolución de problemas</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+
+    <!-- 6 · Actividades -->
+    <details class="card" id="actividades" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4.2-1L19 8.2 15.8 5 5 15.8z"/><path d="M14 6.8l3.2 3.2"/></svg></span><span class="st">Actividades de aprendizaje</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <dl class="facts">
+          <div><dt>Metodología</dt><dd>Activa y centrada en el participante: exposición del docente, actividades individuales y grupales, y material audiovisual.</dd></div>
+          <div><dt>Modalidad de trabajo</dt><dd>Individual</dd></div>
+        </dl>
+        <div class="acts">
+          <article class="act">
+            <span class="eyebrow">En clase y después de la clase</span>
+            <h3>Actividad individual: la curva del cambio de Kübler-Ross</h3>
+            <div class="tags"><span class="tag grade">Calificada · 100 puntos</span><span class="tag">Individual</span><span class="tag">Dedicación estimada: 30 minutos</span></div>
+            <p>Analizas una experiencia real de cambio de tu entorno personal, académico o laboral e identificas cómo se manifestó cada etapa del modelo de Kübler-Ross. Trabajas en dos momentos: una primera versión en clase y la versión final después de la clase.</p>
+            <div class="ev"><strong>Resultado de aprendizaje de la actividad</strong>Analizar las respuestas individuales ante una experiencia de cambio real, interpretando cada etapa de la curva del cambio de Kübler-Ross, para la comprensión de los factores que influyen en la adaptación y la resistencia al cambio.</div>
+            <div class="mom"><span class="tag">Momento 1 · En clase</span><strong>Primera versión del análisis</strong></div>
+            <ol class="steps">
+              <li><b class="n">1</b><span><strong>Identifica una experiencia de cambio significativa</strong>Ocurrida en tu entorno laboral, académico o personal, que puedas compartir con tus compañeros de clase.</span></li>
+              <li><b class="n">2</b><span><strong>Analízala con la curva del cambio de Kübler-Ross</strong>Describe de manera reflexiva cómo se manifestó cada una de las etapas del proceso.</span></li>
+            </ol>
+            <div class="mom"><span class="tag">Momento 2 · Después de la clase</span><strong>Versión final en el formato proporcionado</strong></div>
+            <ol class="steps">
+              <li><b class="n">1</b><span><strong>Recupera tu primera versión</strong>La desarrollada en clase; es tu punto de partida.</span></li>
+              <li><b class="n">2</b><span><strong>Incorpora y amplía lo trabajado en clase</strong>Mejóralo según consideres pertinente, con ejemplos, reflexiones y evidencias que muestren con claridad cómo se manifestó cada etapa.</span></li>
+              <li><b class="n">3</b><span><strong>Completa el formato proporcionado</strong>Describe de manera reflexiva y fundamentada las siete etapas de la curva:</span></li>
+            </ol>
+            <div class="chips stages-in"><span class="chip"><b>1</b> Choque</span><span class="chip"><b>2</b> Negación</span><span class="chip"><b>3</b> Ira o culpa</span><span class="chip"><b>4</b> Negociación y autoculpa</span><span class="chip"><b>5</b> Depresión y confusión</span><span class="chip"><b>6</b> Aceptación</span><span class="chip"><b>7</b> Resolución de problemas</span></div>
+            <p style="margin-top:1.1rem">Para reconocer y describir cada etapa, repasa el enfoque psicodinámico y la curva de Kübler-Ross en la sección 2.3 de la Lecture Note 3.</p>
+            <div class="ev" style="margin-top:1.2rem"><strong>Qué entregas</strong>El formato de la curva del cambio de Kübler-Ross completamente desarrollado, en PDF, subido a la actividad en el aula virtual. Nombre sugerido del archivo: Apellido_Nombre_CurvaCambioKublerRoss.pdf</div>
+            <p class="note">La curva es una heurística: no se trata de etiquetar a una persona con certeza, sino de leer sus reacciones con criterio.</p>
+          </article>
+          <article class="act b">
+            <span class="eyebrow">Al cierre de la clase</span>
+            <h3>Control de lectura en Kahoot</h3>
+            <div class="tags"><span class="tag grade">Calificada</span><span class="tag">5 preguntas</span></div>
+            <p>Respondes cinco preguntas sobre los conceptos principales de la Lecture Note 3. Es la primera comprobación de lo que leíste y viste en la sesión.</p>
+          </article>
+          <article class="act">
+            <span class="eyebrow">Después de la clase</span>
+            <h3>Control de lectura sobre la Lecture Note 3</h3>
+            <div class="tags"><span class="tag grade">Calificada</span><span class="tag">15 preguntas</span></div>
+            <p>Lo realizas cuando hayas revisado a fondo la Lecture Note 3. Las preguntas se basan en el contenido de ese documento.</p>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <!-- 7 · Cierre -->
+    <details class="card" id="cierre" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg></span><span class="st">Cierre y siguiente paso</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <p class="big">El cambio se decide, la transición se vive.</p>
+        <div class="next">
+          <span class="eyebrow">Conexión con la sesión 4</span>
+          <p style="margin-top:.4rem">Lo visto en esta sesión es el punto de partida para analizar cómo se acompaña a las personas durante un cambio digital en las sesiones siguientes.</p>
+        </div>
+        <div class="next">
+          <span class="eyebrow">Después de la clase</span>
+          <p style="margin-top:.4rem">Completa la versión final de la actividad de la curva del cambio de Kübler-Ross en el formato proporcionado y súbela en PDF. Revisa a fondo la Lecture Note 3 y realiza el control de lectura posterior.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 8 · Referencias -->
+    <details class="card" id="referencias" open>
+      <summary><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h11a1 1 0 0 1 1 1v15H7a1 1 0 0 1-1-1z"/><path d="M6 19a1 1 0 0 1 1-1h11"/><path d="M9.5 8h5M9.5 11h5"/></svg></span><span class="st">Referencias bibliográficas y lecturas complementarias</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="body">
+        <ul class="refs">
+          <li>Cameron, E., &amp; Green, M. (2024). <i>Making sense of change management: A complete guide to the models, tools and techniques of organizational change</i> (6th ed.). Kogan Page.</li>
+          <li>Creasey, T. (2026, August 7). <i>Change vs. change management</i>. Prosci. <a href="https://www.prosci.com/blog/change-vs-change-management" target="_blank" rel="noopener">https://www.prosci.com/blog/change-vs-change-management</a></li>
+          <li>Novak, K. (2025, September 25). <i>Change vs. transition: Why leaders manage the wrong thing</i>. 2040 Digital. <a href="https://www.2040digital.com/transformation-psychology/change-vs-transition-why-leaders-manage-the-wrong-thing/" target="_blank" rel="noopener">https://www.2040digital.com/transformation-psychology/change-vs-transition-why-leaders-manage-the-wrong-thing/</a></li>
+          <li>Ortega, C. (2024, November 19). <i>Tipos de cambio organizacional y estrategias para los negocios</i>. QuestionPro. <a href="https://www.questionpro.com/blog/es/tipos-de-cambio-organizacional/" target="_blank" rel="noopener">https://www.questionpro.com/blog/es/tipos-de-cambio-organizacional/</a></li>
+          <li>Palmer, I., Dunford, R., &amp; Buchanan, D. A. (2017). <i>Managing organizational change: A multiple perspectives approach</i> (3rd ed.). McGraw-Hill Education.</li>
+          <li>Serradell López, E. (2024, November 26). <i>De VUCA a BANI: Entendiendo la complejidad del mundo actual y sus nuevos paradigmas</i>. Blog de Economía y Empresa, Universitat Oberta de Catalunya. <a href="https://blogs.uoc.edu/economia-empresa/es/de-vuca-a-bani-entendiendo-la-complejidad-del-mundo-actual-y-sus-nuevos-paradigmas/" target="_blank" rel="noopener">https://blogs.uoc.edu/economia-empresa/es/de-vuca-a-bani-entendiendo-la-complejidad-del-mundo-actual-y-sus-nuevos-paradigmas/</a></li>
+          <li>Smith, R., King, D., Sidhu, R., &amp; Skelsey, D. (Eds.). (2015). <i>The effective change manager’s handbook: Essential guidance to the change management body of knowledge</i>. Kogan Page Limited.</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <b>ESPAE · Escuela de Negocios de la ESPOL</b>
+    <p>Gestión del Cambio en la Era Digital — Sesión 3</p>
+    <p class="copy">© 2026 David Coello Montecel. Todos los derechos reservados. Este material ha sido preparado únicamente con fines de apoyo al aprendizaje, y su uso está autorizado únicamente dentro del curso Gestión del Cambio en la Era Digital.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('details.card'));
+  var links=[].slice.call(document.querySelectorAll('.nv'));
+  var btn=document.getElementById('toggleAll');
+  function openFor(id){var el=id&&document.getElementById(id);if(el&&el.tagName==='DETAILS'){el.open=true;syncBtn();}}
+  function syncBtn(){btn.textContent=cards.every(function(c){return c.open;})?'Contraer todo':'Expandir todo';}
+  links.forEach(function(l){l.addEventListener('click',function(){openFor(l.getAttribute('href').slice(1));});});
+  cards.forEach(function(c){c.addEventListener('toggle',syncBtn);});
+  btn.addEventListener('click',function(){var all=cards.every(function(c){return c.open;});cards.forEach(function(c){c.open=!all;});syncBtn();});
+  window.addEventListener('hashchange',function(){openFor(location.hash.slice(1));});
+  openFor(location.hash.slice(1));
+  var ticking=false;
+  function spy(){
+    ticking=false;
+    var cur=cards[0];
+    cards.forEach(function(c){if(c.getBoundingClientRect().top<=180)cur=c;});
+    links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+cur.id);});
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(spy);}},{passive:true});
+  window.addEventListener('resize',spy);
+  spy();
+})();
+</script>
+
+</body></html>
